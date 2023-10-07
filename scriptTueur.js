@@ -33,7 +33,9 @@ let qP; //Future action pour chaque tour
 let tabMort = []; //Tableau qui se remplira par le nom des victimes
 
 
-function rencontreSurvivant(pv,survivant,caractéristique,probabilité){
+function rencontreSurvivant(pv,survivant,caractéristique,probabilité){ //Je créé une fonction avec les paramètres pv, survivant, caractéristique et probabilité
+
+//Partie où on génère l'équipe des survivants et où on leur affecte leur caractéristique cliché
 
     for(let i = 0; e2c.length<5; i++){ //Pour i allant de 0 à 4,
         equipe2Choc = (Math.floor(Math.random() * tousSurvivants.length)) //On génère un nombre aléatoire avec la longeur du tableau des survivants
@@ -90,12 +92,14 @@ function rencontreSurvivant(pv,survivant,caractéristique,probabilité){
         }
         e2c.push(nom); //J'affecte les 5 prénoms à ce tableau
 
-        //for(let i=0; i<e2c.length; i++) {
-            //if(nom === e2c[i]){
-            //    break;
-            //}else{
-                //e2c.push(nom); //J'affecte les 5 prénoms à ce tableau
-                //break;
+        //Boucle qui devait éviter les doublons de prénom dans l'équipe des survivants
+
+        //for(let i=0; i<e2c.length; i++) { //Pour i allant de 0 à 4,
+            //if(nom === e2c[i]){ //Si le nom qui vient d'être généré est déjà dans le tableau,
+            //    break; //Alors on arrête et relance la boucle pour en avoir un différent
+            //}else{ //Sinon, s'il n'est pas déjà inscrit dans le tableau,
+                //e2c.push(nom); //J'affecte le prénom à ce tableau
+                //break; //Et je continue à généré la fin des prénoms de l'équipe
             //}
     }
 
@@ -140,8 +144,12 @@ function rencontreSurvivant(pv,survivant,caractéristique,probabilité){
     for(let i = 0; i<5; i++){ //Pour i allant de 0 à 4,
         tab.push(`${e2c[i]} ${crctq[i]}`); //Je récupère les prénoms et caractéristiques générés et je les concatène dans ce tableau
     }
+
+//Fin de partie où on génère l'équipe des survivants et où on leur affecte leur caractéristique cliché
+//Partie où il y a le programme pour savoir qui gagne et qui perd dans la partie
+
     while(pv != 0){
-        for(let i = 0; i<tab.length; i++){ //Pour i allant de 0 à 4,
+        //for(let i = 0; i<tab.length; i++){ //Pour i allant de 0 à 4,
             quePassa = (Math.floor(Math.random() * probabilitéEnd.length)) //On génère un nombre aléatoire avec la longeur du tableau des actions possibles
     
             switch(quePassa){ //Je "transcrit" le chiffre aléatoire avec l'action du tueur et des survivant qui correspond
@@ -157,22 +165,22 @@ function rencontreSurvivant(pv,survivant,caractéristique,probabilité){
             }
     
             if(qP == "Mourir"){ //Si le tueur tue le survivant
-                tabMort.push(tab[i]) //On apprend la victime dans le tableau des morts
-                console.log(`${prenom} a tué ${tab[i]}.`); //On affiche ce qu'il en est dans la console
-                tab.splice(tab[i]) //On enlève le survivant du tableau étant donné qu'il est mort
+                //tabMort.push(tab[i]) //On apprend la victime dans le tableau des morts
+                console.log(`${prenom} a tué machin.`); //On affiche ce qu'il en est dans la console
+                //tab.splice(tab[i]) //On enlève le survivant du tableau étant donné qu'il est mort
             }else if(qP == "Infliger des dégâts"){ //Si le survivant inglige des dégâts au tueur
                 pv = pv - 10 //Jason perd 15 point de vie
-                console.log(`${tab[i]} a esquivé l'attaque du tueur et a infligé 10 dégâts à ${prenom}`); //On affiche ce qu'il en est dans la console
+                console.log(`machin a esquivé l'attaque du tueur et a infligé 10 dégâts à ${prenom}`); //On affiche ce qu'il en est dans la console
             }else{ //Si le survivant inglige des dégâts au tueur mais il meurt
                 pv = pv - 15 //Jason perd 15 point de vie
-                tabMort.push(tab[i]) //On apprend la victime dans le tableau des morts
-                console.log(`${prenom} a été attaqué par ${tab[i]} et perd 15 dégâts mais ${tab[i]} est mort sur le coup.`); //On affiche ce qu'il en est dans la console
-                tab.splice(tab[i]) //On enlève le survivant du tableau étant donné qu'il est mort
+                //tabMort.push(tab[i]) //On apprend la victime dans le tableau des morts
+                console.log(`${prenom} a été attaqué par machin et perd 15 dégâts mais machin est mort sur le coup.`); //On affiche ce qu'il en est dans la console
+                //tab.splice(tab[i]) //On enlève le survivant du tableau étant donné qu'il est mort
             }
-            if(tab.length == 0){ //Si tab est vide alors il n'y a plus de survivant
-                break; //donc on arrête la boucle while
-            }
-        }
+            //if(tab.length == 0){ //Si tab est vide alors il n'y a plus de survivant
+               // break; //donc on arrête la boucle while
+            //}
+        //}
     }
     if(pv == 0){ //Si Jason n'a plus de point de vie,
         console.log(`${prenom} n'a pas survécu à léquipe de choc des survivants. Nou comptons tout de même ${tabMort} parmis les morts.`); //Alors les survivants gagne et on affiche qui sont les victimes du tueur
