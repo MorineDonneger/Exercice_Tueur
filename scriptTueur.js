@@ -91,17 +91,24 @@ function rencontreSurvivant(pv,survivant,caractéristique,probabilité){ //Je cr
                 nom = "Clint"
                 break;
         }
-        e2c.push(nom); //J'affecte les 5 prénoms à ce tableau
+
+        e2c.push(nom);
 
         //Boucle qui devait éviter les doublons de prénom dans l'équipe des survivants
 
-        //for(let i=0; i<e2c.length; i++) { //Pour i allant de 0 à la longueur du tableau e2c,
-            //if(nom === e2c[i]){ //Si le nom qui vient d'être généré est déjà dans le tableau,
-            //    break; //Alors on arrête et relance la boucle pour en avoir un différent
-            //}else{ //Sinon, s'il n'est pas déjà inscrit dans le tableau,
-                //e2c.push(nom); //J'affecte le prénom à ce tableau
-                //break; //Et je continue à généré la fin des prénoms de l'équipe
-            //}
+        for(let ie = 0; ie<e2c.length; ie++){ //Je parcours le tableau e2c
+            if(e2c.length == 0){ //Si le tableau est vide,
+                e2c.push(nom); //J'affecte ce prénom au tableau
+            }else if(nom === e2c[ie]){ //Si le prénom généré n'est pas déjà inscrit dans le tableau,
+                e2c[ie] = nom //Je réafecte au même indice le prénom, c'est comme si je faisais rien
+            }else{ //Sinon, si le prénom n'est pas dans le tableau,
+                e2c.push(nom); //J'affecte ce prénom au tableau
+            }
+        }
+
+        //Mais qui ne fonctionne pas !!
+        //Je devais faire de même pour les caractéristiques
+
     }
 
     console.log(`Prénom des survivants : ${e2c}`); //J'affiche dans la console pour vérifier que cela fonctionne
