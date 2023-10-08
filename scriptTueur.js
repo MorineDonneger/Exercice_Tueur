@@ -96,15 +96,15 @@ function rencontreSurvivant(pv,survivant,caractéristique,probabilité){ //Je cr
 
         //Boucle qui devait éviter les doublons de prénom dans l'équipe des survivants
 
-        for(let ie = 0; ie<e2c.length; ie++){ //Je parcours le tableau e2c
-            if(e2c.length == 0){ //Si le tableau est vide,
-                e2c.push(nom); //J'affecte ce prénom au tableau
-            }else if(nom === e2c[ie]){ //Si le prénom généré n'est pas déjà inscrit dans le tableau,
-                e2c[ie] = nom //Je réafecte au même indice le prénom, c'est comme si je faisais rien
-            }else{ //Sinon, si le prénom n'est pas dans le tableau,
-                e2c.push(nom); //J'affecte ce prénom au tableau
-            }
-        }
+        //for(let ie = 0; ie<e2c.length; ie++){ //Je parcours le tableau e2c
+            //if(e2c.length == 0){ //Si le tableau est vide,
+                //e2c.push(nom); //J'affecte ce prénom au tableau
+            //}else if(nom === e2c[ie]){ //Si le prénom généré n'est pas déjà inscrit dans le tableau,
+                //e2c[ie] = nom //Je réafecte au même indice le prénom, c'est comme si je faisais rien
+            //}else{ //Sinon, si le prénom n'est pas dans le tableau,
+                //e2c.push(nom); //J'affecte ce prénom au tableau
+            //}
+        //}
 
         //Mais qui ne fonctionne pas !!
         //Je devais faire de même pour les caractéristiques
